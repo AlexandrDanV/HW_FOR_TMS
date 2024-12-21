@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
+
     internal class CalcClass
     {
         string strPostfix = null;

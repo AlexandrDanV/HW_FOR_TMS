@@ -1,5 +1,8 @@
 ﻿namespace Calculator
-{
+{/// <summary>
+ /// Прога считает любые вариации с '+','-','*','/','percent of the number- 'p'', записанные в одну строчку
+ /// Использование скобок и квадратного корня ПОКА не реализованно!
+ /// </summary>
     internal class Program
     {
         static void Main(string[] args)
