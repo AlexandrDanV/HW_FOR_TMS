@@ -2,6 +2,17 @@
 {
     internal class Program
     {
+        static void ToConsol(int[,]array)
+        {
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write($"{array[i, j]} |");
+                }
+                Console.WriteLine();
+            }
+        }
         static void Main(string[] args)
         {
             int row, column;
@@ -18,25 +29,11 @@
             myArray.FillArray();
             Console.WriteLine(new string('*', 50));
             //выводим
-            for (int i = 0; i < twoD_Array.GetLength(0); i++)
-            {
-                for (int j = 0; j < twoD_Array.GetLength(1); j++)
-                {
-                    Console.Write($"{twoD_Array[i, j]} |");
-                }
-                Console.WriteLine();
-            }
+            ToConsol(twoD_Array);
             // реверс элементов
             Console.WriteLine(new string('*', 50));
             myArray.ReversELements(twoD_Array);
-            for (int i = 0; i < twoD_Array.GetLength(0); i++)
-            {
-                for (int j = 0; j < twoD_Array.GetLength(1); j++)
-                {
-                    Console.Write($"{twoD_Array[i, j]} |");
-                }
-                Console.WriteLine();
-            }
+            ToConsol(twoD_Array);
             //поиск отрицательных
             var numNagative = myArray.GetNegativeNum(twoD_Array);
             Console.WriteLine(new string('*', 50));
@@ -49,26 +46,12 @@
             Console.WriteLine(new string('*', 50));
             // сортировка построчно от меньшего к большему
             myArray.SortArrayToUpper(twoD_Array);
-            for (int i = 0; i < twoD_Array.GetLength(0); i++)
-            {
-                for (int j = 0; j < twoD_Array.GetLength(1); j++)
-                {
-                    Console.Write($"{twoD_Array[i, j]} |");
-                }
-                Console.WriteLine();
-            }
+            ToConsol(twoD_Array);
 
             // сортировка построчно от большего к меньшему
             Console.WriteLine(new string('*', 50));
             myArray.SortArrayToLes(twoD_Array);
-            for (int i = 0; i < twoD_Array.GetLength(0); i++)
-            {
-                for (int j = 0; j < twoD_Array.GetLength(1); j++)
-                {
-                    Console.Write($"{twoD_Array[i, j]} |");
-                }
-                Console.WriteLine();
-            }
+            ToConsol(twoD_Array);
 
 
 
