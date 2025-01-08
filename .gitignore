@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/LibraryClass_Lesson7/LibraryClass_Lesson7.csproj
