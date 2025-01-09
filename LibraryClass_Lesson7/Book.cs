@@ -12,6 +12,7 @@ namespace LibraryClass_Lesson7
         public string Autor { get; set; }
         public string Genre { get; set; }
         public string IdBook { get; set; }
+        public string Key_Book { get; set; }
 
         public void OpenBook()
         {

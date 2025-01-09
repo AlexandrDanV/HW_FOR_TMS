@@ -6,26 +6,28 @@ using System.Threading.Tasks;
 
 namespace LibraryClass_Lesson7
 {
+    //где лучше хранить коллекцию читателей???
     internal class Reader
     {
         public string NameReader { get; set; }
-        public string Id_Reader { get; set; }
-        public List<string> IdTakenBook { get; set; } //для хранения  idKниг которые он взял.
+        public string ReaderID { get; set; }
+        public List<string> TakenBookID { get; set; } //для хранения  idKниг которые он взял.
 
         public Reader(string nameReader)
         {
             NameReader = nameReader;
-            Id_Reader = Guid.NewGuid().ToString();
-            IdTakenBook = new List<string>();
+            ReaderID = Guid.NewGuid().ToString();
+            TakenBookID = new List<string>();
         }
 
-        public void TakeBook(string idBook)
+        public string TakeBook(string keyBook, Library library)
         {
-            IdTakenBook.Add(idBook);
+            TakenBookID.Add(library.GetBookId(keyBook));
+            return "Книгу взял.";
         }
-        public void BackBook(string idBook)
+        public void BackBook(string keyBook, Library library)
         {
-            IdTakenBook.Remove(idBook);
+            TakenBookID.Remove(library.GetBookId(keyBook));
         }
 
     }

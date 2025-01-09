@@ -12,31 +12,26 @@ namespace LibraryClass_Lesson7
         public string NameEmployee { get; set; }
         public Employee(string name) { NameEmployee = name; }
 
-        public string GiveBookToReader(string idBook, Library library, Reader reader)
+        public string GiveBook(string keyBook, Library library, Reader reader)
         {
-            var index = library.GetIndexBook(idBook);
-            var statusBook = library.statusBook[index].isFree;
+            var statusBook = library.GetStatusBook(keyBook);
             if (statusBook is true)
             {
-                library.statusBook[index].isFree = false;
-                library.statusBook[index].Readers_Id = reader.Id_Reader;
-                reader.TakeBook(idBook);                                // может лучше убрать в управляющий код?????
-                return $"Книга {library.books[index].NameBook} - выдана читателю {reader.NameReader}.";
+                library.SetStatusBook(keyBook, false, reader.ReaderID);
+
+                return "Книга готова к выдаче!";
             }
-            return $"Книга {library.books[index].NameBook}, {library.books[index].Autor} уже выдана. " +
-                $"ID читателя - {library.statusBook[index].Readers_Id} ";
+            return "Книга уже выдана.";
         }
 
-        public string TakeBookBack(string idBook, Library library, Reader reader)
+        public string TakeBookBack(string keyBook, Library library, Reader reader)
         {
-            var index = library.GetIndexBook(idBook);
-            var statusBook = library.statusBook[index].isFree;
+            var statusBook = library.GetStatusBook(keyBook);
+            var strForReturn = "";
             if (statusBook is false)
             {
-                library.statusBook[index].isFree = true;
-                library.statusBook[index].Readers_Id = "";
-                reader.BackBook(idBook);                                   // может лучше убрать в управляющий код?????
-                return $"Книга {library.books[index].NameBook} возвращена";
+                library.SetStatusBook(keyBook, true, "");
+                return "Книга возвращена!";
             }
             return "Книга в картотеке не числится!";
         }
@@ -46,4 +41,10 @@ namespace LibraryClass_Lesson7
 
 
     }
+
+
+
+
+
 }
+

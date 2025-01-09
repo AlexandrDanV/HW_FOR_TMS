@@ -7,106 +7,83 @@ using System.Threading.Tasks;
 
 namespace LibraryClass_Lesson7
 {
+    /// чтобы найти книгу по автору (а ключ название книги) нода еще один словарь? Или перебор
+
     internal class Library /// как хранилище для книг и учета выданных книг 
     {
-        public List<Book> books;  // связь один ко многим
+        Dictionary<string, List<Book>> booksDict = new Dictionary<string, List<Book>>();
+        Dictionary<string, List<BookStatus>> statusB = new Dictionary<string, List<BookStatus>>();
+        List<Reader> readers { get; set; } //ид пользователя взявшего книгу
+        public int Count { get; private set; }
 
-        public List<BookStatus> statusBook;
-
-        public List<Reader> readers; //ид пользователя взявшего книгу
-        public int Count { get; set; }
-
-        public Library()
-        {
-            books = new List<Book>();
-            statusBook = new List<BookStatus>();
-            readers = new List<Reader>();
-        }
-
-        public void AddBook(string nameBook, string autor, Genre genre)
+        public void AddBook(string key_nameBook, string nameBook, string autor, Genre genre)
         {
             var idBook = Guid.NewGuid().ToString();
-
-            books.Add(new Book { NameBook = nameBook, Autor = autor, Genre = GetGenre(genre), IdBook = idBook });
-            statusBook.Add(new BookStatus() { Book_Id = idBook, isFree = true });
+            if (booksDict.ContainsKey(key_nameBook) is false)
+            {
+                booksDict[key_nameBook] = new List<Book>();
+            }
+            booksDict[key_nameBook].Add(new Book { IdBook = idBook, NameBook = nameBook, Autor = autor, Genre = GetGenre(genre), Key_Book = key_nameBook });
+            if (statusB.ContainsKey(key_nameBook) is false)
+            {
+                statusB[key_nameBook] = new List<BookStatus>();
+            }
+            statusB[key_nameBook].Add(new BookStatus() { Book_Id = idBook, isFree = true });
             Count++;
         }
-        public void RemoveBook(string nameBook, string autor)
+        public bool GetStatusBook(string key_nameBook)
+
         {
-            for (int i = 0; i < books.Count; i++)
+            var isFree = false;
+            foreach (var item in statusB[key_nameBook])
             {
-                if (books[i].NameBook == nameBook && books[i].Autor == autor)
-                {
-                    books.Remove(books[i]);
-                }
+                isFree = item.isFree;
+            }
+            return isFree;
+        }
+        public string GetBookId(string key_nameBook)
+        {
+            var bookId = "";
+            foreach (var item in booksDict[key_nameBook])
+            {
+                bookId = item.IdBook;
+            }
+            return bookId;
+        }
+
+        public void SetStatusBook(string key_nameBook, bool newStatus, string readersId)
+        {
+            foreach (var item in statusB[key_nameBook])
+            {
+                item.isFree = newStatus;
+                item.Readers_Id = readersId;
             }
         }
-        //return LIst т.к. могут быть одноименные книги
-        public List<Book> FindBookByName(string nameBook)
+
+        public string RemoveBook(string nameBook)
+        {
+            var resRemuve = (booksDict.Remove(nameBook)) ? "Книга удалена" : "Ошибка удаления из архива";
+            return resRemuve;
+        }
+
+        public List<Book> FindBook(string nameBook)
         {
             var booksForReturn = new List<Book>();
-            for (int i = 0; i < books.Count; i++)
-            {
-                if (books[i].NameBook == nameBook)
-                {
-                    booksForReturn.Add(books[i]);
-                }
-            }
+            booksForReturn = booksDict[nameBook];
+
             return booksForReturn;
         }
-        public List<Book> FindBookByAutor(string autor)
-        {
-            var bookForReturn = new List<Book>();
-            for (int i = 0; i < books.Count; i++)
-            {
-                if (books[i].Autor == autor)
-                {
-                    bookForReturn.Add(books[i]);
-                }
-            }
-            return bookForReturn;
-        }
-        public int GetIndexBook(string idBook)
-        {
-            int result = 0;
-            for (int index = 0; index < books.Count; index++)
-            {
-                var book = books[index];
-                if (book.IdBook == idBook)
-                {
-                    result = index;
-                    break;
-                }
-            }
-            return result;
-        }
 
-
-        private string GetGenre(Genre genre)
+        string GetGenre(Genre genre) => genre switch
         {
-            var result = "";
-            switch (genre)
-            {
-                case Genre.Classic:
-                    result = "Класическая литература";
-                    break;
-                case Genre.Science:
-                    result = "Научная литература";
-                    break;
-                case Genre.Art:
-                    result = "Искуство";
-                    break;
-                case Genre.Programming:
-                    result = "Программирование";
-                    break;
-                case Genre.Religion:
-                    result = "Религия";
-                    break;
-                default:
-                    break;
-            }
-            return result;
-        }
+            Genre.Classic => "Класическая литература",
+            Genre.Science => "Научная литература",
+            Genre.Art => "Искуство",
+            Genre.Programming => "Программирование",
+            Genre.Religion => "Религия",
+            Genre.Fantastic => "Фантастика",
+
+        };
 
     }
 }

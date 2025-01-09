@@ -12,7 +12,8 @@ namespace LibraryClass_Lesson7
         Science = 2,
         Art = 4,
         Programming = 6,
-        Religion = 8
+        Religion = 8,
+        Fantastic = 10
 
     }
 }
