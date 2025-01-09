@@ -13,9 +13,6 @@ namespace LibraryClass_Lesson7
     {
         Dictionary<string, List<Book>> booksDict = new Dictionary<string, List<Book>>();
         Dictionary<string, List<BookStatus>> statusB = new Dictionary<string, List<BookStatus>>();
-        List<Reader> readers { get; set; } //ид пользователя взявшего книгу
-        public int Count { get; private set; }
-
         public void AddBook(string key_nameBook, string nameBook, string autor, Genre genre)
         {
             var idBook = Guid.NewGuid().ToString();
@@ -29,7 +26,6 @@ namespace LibraryClass_Lesson7
                 statusB[key_nameBook] = new List<BookStatus>();
             }
             statusB[key_nameBook].Add(new BookStatus() { Book_Id = idBook, isFree = true });
-            Count++;
         }
         public bool GetStatusBook(string key_nameBook)
 
@@ -60,18 +56,15 @@ namespace LibraryClass_Lesson7
             }
         }
 
-        public string RemoveBook(string nameBook)
+        public string RemoveBook(string keyBook)
         {
-            var resRemuve = (booksDict.Remove(nameBook)) ? "Книга удалена" : "Ошибка удаления из архива";
-            return resRemuve;
+            return (booksDict.Remove(keyBook)) ? "Книга удалена" : "Ошибка удаления из архива";
+            
         }
 
         public List<Book> FindBook(string nameBook)
         {
-            var booksForReturn = new List<Book>();
-            booksForReturn = booksDict[nameBook];
-
-            return booksForReturn;
+            return booksDict.ContainsKey(nameBook) ? booksDict[nameBook] : null;
         }
 
         string GetGenre(Genre genre) => genre switch

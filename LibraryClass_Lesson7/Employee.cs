@@ -26,8 +26,7 @@ namespace LibraryClass_Lesson7
 
         public string TakeBookBack(string keyBook, Library library, Reader reader)
         {
-            var statusBook = library.GetStatusBook(keyBook);
-            var strForReturn = "";
+            var statusBook = library.GetStatusBook(keyBook);           
             if (statusBook is false)
             {
                 library.SetStatusBook(keyBook, true, "");

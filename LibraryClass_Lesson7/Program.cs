@@ -3,9 +3,9 @@ using LibraryClass_Lesson7;
 //1. Создаем библиотеку и заполняем её книгами.
 Library library = new Library();
 
-library.AddBook("Война и мир", "Война и мир, 1 том", "Лев Толстой", Genre.Classic);
+library.AddBook("Война и мир1", "Война и мир, 1 том", "Лев Толстой", Genre.Classic);
 library.AddBook("Война миров", "Война миров", "Герберт Уэллс", Genre.Fantastic);
-library.AddBook("Война и мир", "Война и мир, 2 том", "Лев Толстой", Genre.Classic);
+library.AddBook("Война и мир2", "Война и мир, 2 том", "Лев Толстой", Genre.Classic);
 library.AddBook("Анна Каренина", "Анна Каренина", "Лев Толстой", Genre.Classic);
 library.AddBook("Психбольница в руках пациентов. Алан Купер об интерфейсах", "Психбольница в руках пациентов. Алан Купер об интерфейсах", "Алан Купер", Genre.Programming);
 
@@ -25,5 +25,8 @@ Console.WriteLine(giveBook);
 // возвращаем книгу
 var backBook = employee.TakeBookBack(keyBook, library, reader1);
 Console.WriteLine(backBook);
+//удаляем книгу
+var removeBook = library.RemoveBook(keyBook);
+Console.WriteLine(removeBook);
 
 Console.ReadLine();
