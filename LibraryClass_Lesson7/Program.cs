@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using LibraryClass_Lesson7;
 //1. Создаем библиотеку и заполняем её книгами.
+
 Library library = new Library();
 
 library.AddBook("Война и мир1", "Война и мир, 1 том", "Лев Толстой", Genre.Classic);
