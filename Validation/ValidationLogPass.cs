@@ -13,29 +13,41 @@ namespace Validation
         const int maxLengthPassword = 19;
         static char simbol = ' ';
 
-        public static bool ValidateLogPass(string login, string password, string confirmPassword)
+        /// <summary>
+        /// В методе использ.каскад ,чтобы вернуть bool(по условию) и Exception
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="password"></param>
+        /// <param name="confirmPassword"></param>
+        /// <returns></returns>
+        public static (bool, Exception) ValidateLogPass(string login, string password, string confirmPassword)
         {
 
             try
             {
-                if (CheckForNullOrEmpty(login, password, confirmPassword) is true)                
+                if (CheckForNullOrEmpty(login, password, confirmPassword) is true)
+                {
                     throw new InvalidParamsExceptions("Entered params are null or empty.");
-
-                if (CheckLogin(login, maxLengthLogin, simbol) is false)                
+                }
+                if (CheckLogin(login, maxLengthLogin, simbol) is false)
+                {
                     throw new WronLoginException("Entered incorrect login.");
-
-                if (CheckPassword(password, maxLengthPassword, simbol) is false)                
+                }
+                if (CheckPassword(password, maxLengthPassword, simbol) is false)
+                {
                     throw new WronPasswordException("Entered password is incorrect.");
-
-               if (password == confirmPassword) 
+                }
+                if (password != confirmPassword)
+                {
                     throw new ComparePasswordExceptions("Entered passwords don't match.");
+                }
 
-                return true;
+                return (true, null);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                return (false, ex); 
             }
         }
 
