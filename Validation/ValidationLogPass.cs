@@ -15,32 +15,28 @@ namespace Validation
 
         public static bool ValidateLogPass(string login, string password, string confirmPassword)
         {
-            var isSuccessfulControll = false;
+
             try
             {
-                if (CheckForNullOrEmpty(login, password, confirmPassword) is true)
-                {
+                if (CheckForNullOrEmpty(login, password, confirmPassword) is true)                
                     throw new InvalidParamsExceptions("Entered params are null or empty.");
-                }
 
-                var isValidLogin = (CheckLogin(login, maxLengthLogin, simbol)) ? true :
+                if (CheckLogin(login, maxLengthLogin, simbol) is false)                
                     throw new WronLoginException("Entered incorrect login.");
 
-                var isValidPassword = (CheckPassword(password, maxLengthPassword, simbol)) ? true :
+                if (CheckPassword(password, maxLengthPassword, simbol) is false)                
                     throw new WronPasswordException("Entered password is incorrect.");
 
-                var isCompare = (password == confirmPassword) ? true :
+               if (password == confirmPassword) 
                     throw new ComparePasswordExceptions("Entered passwords don't match.");
-                isSuccessfulControll = (isValidLogin && isValidPassword && isCompare) ? true : false;
 
-                return isSuccessfulControll;
+                return true;
             }
 
             catch (Exception)
             {
-                throw;
+                return false;
             }
-
         }
 
         static bool CheckForNullOrEmpty(string login, string password, string confirmPassword)
