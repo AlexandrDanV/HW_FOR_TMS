@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW_FOR_TMS", "HW_FOR_TMS\HW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation", "Validation\Validation.csproj", "{802CC4AE-AEDA-40BE-A24F-A5BD33093715}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation.UnitTests", "Validation.UnitTests\Validation.UnitTests.csproj", "{45C13354-52D2-412F-9550-577447188176}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{802CC4AE-AEDA-40BE-A24F-A5BD33093715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{802CC4AE-AEDA-40BE-A24F-A5BD33093715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{802CC4AE-AEDA-40BE-A24F-A5BD33093715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C13354-52D2-412F-9550-577447188176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C13354-52D2-412F-9550-577447188176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C13354-52D2-412F-9550-577447188176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C13354-52D2-412F-9550-577447188176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

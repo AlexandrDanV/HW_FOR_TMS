@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Validation.InvalidExceptions
 {
-    internal class WronPasswordException : Exception
+    public class WronPasswordException : Exception
     {
         public WronPasswordException() { }
         public WronPasswordException(string message) : base(message) { }

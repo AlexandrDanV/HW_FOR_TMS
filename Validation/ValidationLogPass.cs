@@ -7,14 +7,20 @@ using Validation.InvalidExceptions;
 
 namespace Validation
 {
+
     public class ValidationLogPass
     {
         const int maxLengthLogin = 19;
         const int maxLengthPassword = 19;
         static char simbol = ' ';
 
+        //// В методе использ.каскад, чтобы вернуть bool(как обязательное условие задачи) и 
+        ///Exception терять не хочеться (stackTrace сохраняется)
+         
         /// <summary>
-        /// В методе использ.каскад ,чтобы вернуть bool(по условию) и Exception
+        ///Метод возвращает true если каскад проверок пройден успешно. 
+        ///Если выпадает исключение первой проверки, то его обрабатывает catch метода, 
+        ///если выпадают исключения последующих проверок, то они пробрасываются наверх, и обрабытываются в catch'e main'a
         /// </summary>
         /// <param name="login"></param>
         /// <param name="password"></param>
@@ -27,7 +33,7 @@ namespace Validation
             {
                 if (CheckForNullOrEmpty(login, password, confirmPassword) is true)
                 {
-                    throw new InvalidParamsExceptions("Entered params are null or empty.");
+                    throw new NullReferenceException(message: "Null or empty!");
                 }
                 if (CheckLogin(login, maxLengthLogin, simbol) is false)
                 {
@@ -45,7 +51,7 @@ namespace Validation
                 return (true, null);
             }
 
-            catch (Exception ex)
+            catch (NullReferenceException ex)
             {
                 return (false, ex); 
             }
@@ -58,12 +64,12 @@ namespace Validation
             return isNullOrEmpty;
         }
 
-        static bool CheckLogin(string login, int maxLength, char simbol)
+        public static bool CheckLogin(string login, int maxLength, char simbol)
         {
             var isRelevant = (login.Length <= maxLength && !login.Contains(simbol)) ? true : false;
             return isRelevant;
         }
-        static bool CheckPassword(string pass, int maxLength, char simbol)
+        public static bool CheckPassword(string pass, int maxLength, char simbol)
         {
             var isRelevant = (pass.Length <= maxLength && !pass.Contains(simbol)
                 && ContainDigit(pass)) ? true : false;
