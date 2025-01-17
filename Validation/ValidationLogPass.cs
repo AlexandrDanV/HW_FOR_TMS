@@ -13,19 +13,8 @@ namespace Validation
         const int maxLengthLogin = 19;
         const int maxLengthPassword = 19;
         static char simbol = ' ';
-
-        //// В методе использ.каскад, чтобы вернуть bool(как обязательное условие задачи) и 
-        ///Exception терять не хочеться (stackTrace сохраняется)
-         
-        /// <summary>
-        ///Метод возвращает true если каскад проверок пройден успешно. 
-        ///Если выпадает исключение, то  срабатывает catch.   
-        /// </summary>
-        /// <param name="login"></param>
-        /// <param name="password"></param>
-        /// <param name="confirmPassword"></param>
-        /// <returns></returns>
-        public static (bool, Exception) ValidateLogPass(string login, string password, string confirmPassword)
+      
+        public static bool ValidateLogPass(string login, string password, string confirmPassword)
         {
 
             try
@@ -47,12 +36,15 @@ namespace Validation
                     throw new ComparePasswordExceptions("Entered passwords don't match.");
                 }
 
-                return (true, null);
+                return true;
             }
 
             catch (Exception ex)
             {
-                return (false, ex); 
+                return false;       /// возвращает false, т.к. его надо вернуть по условию. Если написать throw,
+                                   /// то return не сработает и наоборот. 
+                                  /// Есть вариант когда можем вернуть и то, и то - Каскадом. Но как-будто так не делают,
+                                 /// но можно!
             }
         }
 

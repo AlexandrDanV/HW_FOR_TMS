@@ -11,17 +11,16 @@
             Console.Write("Confirm the password: ");
             var confirmPassword = Console.ReadLine();
 
-            Exception ex = null;
-            bool isValid = false;
+            
 
-            (isValid, ex) = ValidationLogPass.ValidateLogPass(login, password, confirmPassword);
-            if (isValid)
+           var isValidLogAndPass= ValidationLogPass.ValidateLogPass(login, password, confirmPassword);
+            if (isValidLogAndPass)
             {
-                Console.WriteLine("Login and password verification was successful.");
+                Console.WriteLine("Verification is successful.");
             }
             else
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Verification is unsuccessful.");
             }
 
 
