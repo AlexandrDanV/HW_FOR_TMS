@@ -19,8 +19,7 @@ namespace Validation
          
         /// <summary>
         ///Метод возвращает true если каскад проверок пройден успешно. 
-        ///Если выпадает исключение первой проверки, то его обрабатывает catch метода, 
-        ///если выпадают исключения последующих проверок, то они пробрасываются наверх, и обрабытываются в catch'e main'a
+        ///Если выпадает исключение, то  срабатывает catch.   
         /// </summary>
         /// <param name="login"></param>
         /// <param name="password"></param>
@@ -51,7 +50,7 @@ namespace Validation
                 return (true, null);
             }
 
-            catch (NullReferenceException ex)
+            catch (Exception ex)
             {
                 return (false, ex); 
             }

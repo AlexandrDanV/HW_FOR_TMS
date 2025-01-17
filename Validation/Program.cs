@@ -13,22 +13,18 @@
 
             Exception ex = null;
             bool isValid = false;
-            try
+
+            (isValid, ex) = ValidationLogPass.ValidateLogPass(login, password, confirmPassword);
+            if (isValid)
             {
-                (isValid, ex) = ValidationLogPass.ValidateLogPass(login, password, confirmPassword);
-                if (isValid)
-                {
-                    Console.WriteLine("Login and password verification was successful.");
-                }
-                else
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                Console.WriteLine("Login and password verification was successful.");
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.Message);
             }
+
+
 
             Console.ReadLine();
         }
