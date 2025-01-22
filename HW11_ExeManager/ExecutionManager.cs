@@ -18,7 +18,7 @@ namespace HW11_ExeManager
             _second = second;
             PrepareExecution();
         }
-        public void PrepareExecution()
+       void PrepareExecution()
         {
             FuncExecute = new()
             {
