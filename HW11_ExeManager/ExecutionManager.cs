@@ -8,22 +8,24 @@ namespace HW11_ExeManager
 {
     public class ExecutionManager
     {
-        public Dictionary<Operation, Func<int>> FuncExecute { get; set; }
-        private readonly OperationManager operationManager;
+        int _first;
+        int _second;
+        public Dictionary<Operation, Func<int>> FuncExecute { get; set; }      
 
-        public ExecutionManager(OperationManager operationManager)
+        public ExecutionManager(int _first, int _second)
         {
-            FuncExecute = new Dictionary<Operation, Func<int>>();
-            this.operationManager = operationManager;
+            this._first = _first;
+            this._second = _second;
+            FuncExecute = new Dictionary<Operation, Func<int>>();            
             PopulateFunction();
         }
         void PopulateFunction()//pass delegates and register
         {
             var _numOpers = Enum.GetNames(typeof(Operation)).Length;
             Func<int>[] funcs = new Func<int>[_numOpers];
-            funcs[0] = () => operationManager.Sum();
-            funcs[1] = () => operationManager.Subtract();
-            funcs[2] = () => operationManager.Multiply();
+            funcs[0] = () => _first + _second;
+            funcs[1] = () => _first - _second;
+            funcs[2] = () => _first * _second;
             PrepareExecution(funcs);
         }
         void PrepareExecution(Func<int>[] func)//fill dictionary here

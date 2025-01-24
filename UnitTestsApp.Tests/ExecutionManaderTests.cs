@@ -28,7 +28,7 @@ namespace UnitTestsApp.Tests
         [Fact]
         public void Test_DictionaryNotEmpty()
         {
-            var manager = new ExecutionManager(new OperationManager(1, 1));
+            var manager = new ExecutionManager(7, 3);
             Assert.NotEmpty(manager.FuncExecute);
         }
     }
