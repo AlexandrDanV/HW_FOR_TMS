@@ -8,35 +8,30 @@ namespace HW11_ExeManager
 {
     public class ExecutionManager
     {
-        private int _first;
-        private int _second;
-        public Dictionary<Operations, Func<int>> FuncExecute { get; set; }
+        public Dictionary<Operation, Func<int>> FuncExecute { get; set; }
+        private readonly OperationManager operationManager;
 
-        public ExecutionManager(int first, int second)
+        public ExecutionManager(OperationManager operationManager)
         {
-            _first = first;
-            _second = second;
-            PrepareExecution();
+            FuncExecute = new Dictionary<Operation, Func<int>>();
+            this.operationManager = operationManager;
+            PopulateFunction();
         }
-       void PrepareExecution()
+        void PopulateFunction()//pass delegates and register
         {
-            FuncExecute = new()
-            {
-                [Operations.Sum] = () => _first + _second,
-                [Operations.Subtract] = () => _first - _second,
-                [Operations.Multiply] = () => _first * _second,
-            };
+            var _numOpers = Enum.GetNames(typeof(Operation)).Length;
+            Func<int>[] funcs = new Func<int>[_numOpers];
+            funcs[0] = () => operationManager.Sum();
+            funcs[1] = () => operationManager.Subtract();
+            funcs[2] = () => operationManager.Multiply();
+            PrepareExecution(funcs);
         }
-        public int Execute(Operations opers)
+        void PrepareExecution(Func<int>[] func)//fill dictionary here
         {
-            var res = opers switch
+            for (int i = 0; i < func.Length; i++)
             {
-                Operations.Sum => FuncExecute[Operations.Sum](),
-                Operations.Multiply => FuncExecute[Operations.Multiply](),
-                Operations.Subtract => FuncExecute[Operations.Subtract](),
-                _ => -1
-            };
-            return res;
+                FuncExecute.Add((Operation)i, func[i]);
+            }
         }
     }
 }

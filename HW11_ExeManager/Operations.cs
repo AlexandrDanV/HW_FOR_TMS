@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW11_ExeManager
 {
-    public enum Operations
+    public enum Operation
     {
         Sum,
         Subtract,

@@ -7,29 +7,28 @@ namespace UnitTestsApp.Tests
         [Fact]
         public void ExecuteSum_Test()
         {
-            var manager = new ExecutionManager(2, 3);
-            var result = manager.Execute(Operations.Sum);
-            Assert.Equal(5, result);
+            var manager = new OperationManager(7, 3);
+            var result = manager.Execute(Operation.Sum);
+            Assert.Equal(10, result);
         }
         [Fact]
         public void ExecuteMultiply_Test()
         {
-            var manager = new ExecutionManager(2, 3);
-            var result = manager.Execute(Operations.Multiply);
-            Assert.Equal(6, result);
+            var manager = new OperationManager(7, 3);
+            var result = manager.Execute(Operation.Multiply);
+            Assert.Equal(21, result);
         }
         [Fact]
         public void ExecuteSubtract_Test()
         {
-            var manager = new ExecutionManager(2, 3);
-            var result = manager.Execute(Operations.Subtract);
-            Assert.Equal(-1, result);
+            var manager = new OperationManager(7, 3);
+            var result = manager.Execute(Operation.Subtract);
+            Assert.Equal(4, result);
         }
-
         [Fact]
         public void Test_DictionaryNotEmpty()
         {
-            var manager = new ExecutionManager(2, 3);
+            var manager = new ExecutionManager(new OperationManager(1, 1));
             Assert.NotEmpty(manager.FuncExecute);
         }
     }
