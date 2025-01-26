@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StackGeneric
 {
-    internal class MyStack<T>
+    public class MyStack<T>
     {
         List<T> list = new List<T>();
 
