@@ -8,14 +8,16 @@ namespace Tests_forMyStack
          MyStack<int> myStack_Int = new ();        
          MyStack<string> myStack_Str = new();
 
-        [Fact]
-        public void Count_2add_2return()
+        public MyStack_Tests()
         {
             myStack_Int.Push(111);
             myStack_Int.Push(222);
             myStack_Str.Push("aaa");
             myStack_Str.Push("bbb");
-
+        }
+        [Fact]
+        public void Count_2add_2return()
+        {
             var actual_Int = myStack_Int.Count();
             var acttual_Str = myStack_Str.Count();
 
@@ -26,11 +28,6 @@ namespace Tests_forMyStack
         [Fact]
         public void Pop_LastInFirstOut_Remove()
         {
-            myStack_Int.Push(111);
-            myStack_Int.Push(222);
-            myStack_Str.Push("aaa");
-            myStack_Str.Push("bbb");
-
             var actual_Int = myStack_Int.Pop();
             var actual_Str = myStack_Str.Pop();
 
@@ -46,11 +43,6 @@ namespace Tests_forMyStack
         [Fact]
         public void Peek_LastInFirstOut_WithoutRemove()
         {
-            myStack_Int.Push(111);
-            myStack_Int.Push(222);
-            myStack_Str.Push("aaa");
-            myStack_Str.Push("bbb");
-
             var actual_Int =  myStack_Int.Peek();
             var actual_Str = myStack_Str.Peek();
 
@@ -67,12 +59,14 @@ namespace Tests_forMyStack
         [Fact]
         public void Pop_stackIsEmpty_ExceptionReturn()
         {
-            Assert.Throws<Exception>(() => myStack_Int.Pop());
+            MyStack<int> myStackFofEx = new();
+            Assert.Throws<Exception>(() => myStackFofEx.Pop());
         }
         [Fact]
         public void Peek_stackIsEmpty_ExceptionReturn()
-        {            
-            Assert.Throws<Exception>(() => myStack_Str.Peek());
+        {
+            MyStack<int> myStackFofEx = new();
+            Assert.Throws<Exception>(() => myStackFofEx.Peek());
         }
     }
 }
