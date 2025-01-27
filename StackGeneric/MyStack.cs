@@ -14,7 +14,7 @@ namespace StackGeneric
         public void Push(T element)
         {
             list.Add(element);
-            Set_isEmpty();
+            SetIsEmpty();
         }
         public T Pop()
         {
@@ -26,7 +26,7 @@ namespace StackGeneric
 
             var item = list[list.Count - 1];
             list.RemoveAt(list.Count - 1);
-            Set_isEmpty();
+            SetIsEmpty();
             return item;
         }
         public T Peek()
@@ -45,7 +45,7 @@ namespace StackGeneric
         {
             return list.Count;
         }
-        private void Set_isEmpty() => IsEmpty = (list.Count > 0) ? false : true;
+        private void SetIsEmpty() => IsEmpty = (list.Count > 0) ? false : true;
 
     }
 }
