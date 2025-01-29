@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HwL13Serialisation
 {
-    internal class ValidationFolder
+    public class ValidationFolder
     {
         public static (bool, string) Validation(string pathToFolder)
         {
