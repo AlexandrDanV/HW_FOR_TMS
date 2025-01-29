@@ -12,10 +12,9 @@ namespace HwL13Serialisation
             if (validationFolder.Item1 is false)
             {
                 Console.WriteLine(validationFolder.Item2);
+                Console.ReadLine();
             }
             var allFiles = Directory.GetFiles(pathToFolder, "*.json");
-
-
             var squad = new Squad();
             using (FileStream file = new FileStream(allFiles[0], FileMode.Open))
             {
