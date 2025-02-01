@@ -17,7 +17,6 @@ namespace HwL13Serialisation
         public string HomeTown { get; set; }
 
         [JsonPropertyName("formed")]
-
         public int Formed { get; set; }
         [JsonPropertyName("secretBase")]
         public string Base { get; set; }
@@ -25,11 +24,6 @@ namespace HwL13Serialisation
         public bool isActive { get; set; }
         [JsonPropertyName("members")]
         public List<Members> members { get; set; }
-        [JsonConstructor]
-        public Squad()
-        {
-            members = new List<Members>();
-            members.Add(new Members());
-        }
+
     }
 }

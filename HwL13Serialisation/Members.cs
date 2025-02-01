@@ -18,10 +18,5 @@ namespace HwL13Serialisation
         [JsonPropertyName("powers")]
         public List<string> Powers { get; set; }
 
-        public Members()
-        {
-            Powers = new List<string>();
-            Powers.Add("");
-        }
     }
 }
