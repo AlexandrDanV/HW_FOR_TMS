@@ -21,5 +21,10 @@ namespace HW15_LinqFromUlearn
                         .Select(x => new Point(int.Parse(x[0]), int.Parse(x[1])))
                         .ToList();
         }
+        public static string[] GetAllStudents(Classroom[] classes)
+        {
+            return classes.SelectMany(x => x.Students).ToArray();
+
+        }
     }
 }
