@@ -24,7 +24,11 @@ namespace HW15_LinqFromUlearn
         public static string[] GetAllStudents(Classroom[] classes)
         {
             return classes.SelectMany(x => x.Students).ToArray();
-
+        }
+        public static string[] GetSortedWords(params string[] textLines)
+        {
+            return textLines.Select(x => x.ToLower()).SelectMany(x => x.Split(' ', ',', '\'', '.', ';')
+       .Where(q => q != "")).OrderBy(t => t).Distinct().ToArray();
         }
     }
 }

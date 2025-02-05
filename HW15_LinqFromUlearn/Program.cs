@@ -28,6 +28,12 @@
             };
             var allStudents = Parsing.GetAllStudents(classes);
             Console.WriteLine(string.Join(" ", allStudents));
+            
+            // forth task:
+            Console.WriteLine("\n");
+            var vocabulary = Parsing.GetSortedWords(Words.str);
+            foreach (var word in vocabulary)
+                Console.WriteLine(word);
         }
     }
 }
